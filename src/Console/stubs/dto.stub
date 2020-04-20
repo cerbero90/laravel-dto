@@ -1,0 +1,23 @@
+<?php
+
+namespace DummyNamespace;
+
+use Cerbero\LaravelDto\Dto;DummyUseStatements
+
+use const Cerbero\Dto\PARTIAL;
+use const Cerbero\Dto\IGNORE_UNKNOWN_PROPERTIES;
+
+/**
+ * The data transfer object for the DummyModel model.
+ *
+DummyProperties
+ */
+class DummyClass extends Dto
+{
+    /**
+     * The default flags.
+     *
+     * @var int
+     */
+    protected static $defaultFlags = PARTIAL | IGNORE_UNKNOWN_PROPERTIES;
+}
