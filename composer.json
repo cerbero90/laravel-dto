@@ -9,27 +9,26 @@
     ],
     "homepage": "https://github.com/cerbero/laravel-dto",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Andrea Marco Sartori",
-            "email": "andrea.marco.sartori@gmail.com",
-            "homepage": "https://github.com/cerbero90",
-            "role": "Developer"
-        }
-    ],
+    "authors": [{
+        "name": "Andrea Marco Sartori",
+        "email": "andrea.marco.sartori@gmail.com",
+        "homepage": "https://github.com/cerbero90",
+        "role": "Developer"
+    }],
     "require": {
-        "php": "^7.1",
-        "cerbero/dto": "^1.4",
-        "doctrine/dbal": "^2.6",
-        "illuminate/console": "^5.6|^6.0|^7.0",
-        "illuminate/container": "^5.6|^6.0|^7.0",
-        "illuminate/database": "^5.6|^6.0|^7.0",
-        "illuminate/filesystem": "^5.6|^6.0|^7.0",
-        "illuminate/http": "^5.6|^6.0|^7.0",
-        "illuminate/support": "^5.6|^6.0|^7.0"
+        "php": "^7.3||^8.0",
+        "cerbero/dto": "^2.0",
+        "doctrine/dbal": "^2.12",
+        "illuminate/console": "^5.6||^6.0||^7.0||^8.0",
+        "illuminate/container": "^5.6||^6.0||^7.0||^8.0",
+        "illuminate/database": "^5.6||^6.0||^7.0||^8.0",
+        "illuminate/filesystem": "^5.6||^6.0||^7.0||^8.0",
+        "illuminate/http": "^5.6||^6.0||^7.0||^8.0",
+        "illuminate/support": "^5.6||^6.0||^7.0||^8.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.6|^4.0|^5.0",
+        "laravel/legacy-factories": "^1.1.0",
+        "orchestra/testbench": "^3.6||^4.0||^5.0||^6.0",
         "phpunit/phpunit": ">=7.0",
         "squizlabs/php_codesniffer": "^3.0"
     },
