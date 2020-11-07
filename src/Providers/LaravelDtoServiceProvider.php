@@ -2,12 +2,12 @@
 
 namespace Cerbero\LaravelDto\Providers;
 
+use Cerbero\Dto\Dto;
 use Cerbero\Dto\Manipulators\ArrayConverter;
 use Cerbero\LaravelDto\Manipulators\Listener;
 use Cerbero\LaravelDto\Console\Commands\MakeDtoCommand;
 use Cerbero\LaravelDto\Console\Manifest;
 use Cerbero\LaravelDto\Console\DtoQualifierContract;
-use Cerbero\LaravelDto\Dto;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
@@ -37,11 +37,17 @@ class LaravelDtoServiceProvider extends ServiceProvider
             $this->commands(MakeDtoCommand::class);
         }
 
-        $this->publishes([static::CONFIG => $this->app->configPath('dto.php')], 'cerbero-dto');
+        $this->publishes([static::CONFIG => $this->app->configPath('dto.php')], 'dto');
 
         ArrayConverter::instance()->setConversions($this->config('conversions'));
 
         Listener::instance()->listen($this->config('listeners'));
+
+        if (class_exists($cloner = '\Symfony\Component\VarDumper\Cloner\VarCloner')) {
+            $cloner::$defaultCasters[Dto::class] = function (Dto $dto) {
+                return $dto->toArray();
+            };
+        }
     }
 
     /**
