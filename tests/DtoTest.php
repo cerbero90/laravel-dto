@@ -4,6 +4,7 @@ namespace Cerbero\LaravelDto;
 
 use ArrayIterator;
 use Carbon\Carbon;
+use Cerbero\Dto\Dto;
 use Cerbero\LaravelDto\Console\DefaultDtoQualifier;
 use Cerbero\LaravelDto\Database\Models\Tests\User;
 use Cerbero\LaravelDto\Dtos\RequestData;
@@ -13,10 +14,9 @@ use Illuminate\Container\Container;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 
-use const Cerbero\Dto\ARRAY_DEFAULT_TO_EMPTY_ARRAY;
-use const Cerbero\Dto\BOOL_DEFAULT_TO_FALSE;
 use const Cerbero\Dto\CAST_PRIMITIVES;
 use const Cerbero\Dto\IGNORE_UNKNOWN_PROPERTIES;
+use const Cerbero\Dto\MUTABLE;
 use const Cerbero\Dto\PARTIAL;
 
 /**
@@ -46,8 +46,8 @@ class DtoTest extends TestCase
         $this->withFactories(__DIR__ . '/Database/factories');
 
         $user = factory(User::class)->create();
-        $dto = UserData::fromModel($user, BOOL_DEFAULT_TO_FALSE);
-        $expectedFlags = PARTIAL | IGNORE_UNKNOWN_PROPERTIES | CAST_PRIMITIVES | BOOL_DEFAULT_TO_FALSE;
+        $dto = UserData::fromModel($user, MUTABLE);
+        $expectedFlags = PARTIAL | IGNORE_UNKNOWN_PROPERTIES | CAST_PRIMITIVES | MUTABLE;
 
         $this->assertInstanceOf(UserData::class, $dto);
         $this->assertSame($expectedFlags, $dto->getFlags());
@@ -59,8 +59,8 @@ class DtoTest extends TestCase
     public function creates_instance_from_request()
     {
         $request = new TestRequest();
-        $dto = RequestData::fromRequest($request, ARRAY_DEFAULT_TO_EMPTY_ARRAY);
-        $expectedFlags = PARTIAL | IGNORE_UNKNOWN_PROPERTIES | ARRAY_DEFAULT_TO_EMPTY_ARRAY;
+        $dto = RequestData::fromRequest($request, MUTABLE);
+        $expectedFlags = PARTIAL | IGNORE_UNKNOWN_PROPERTIES | MUTABLE;
 
         $this->assertInstanceOf(RequestData::class, $dto);
         $this->assertSame($expectedFlags, $dto->getFlags());
@@ -126,6 +126,17 @@ class DtoTest extends TestCase
         $dto = Container::getInstance()->make(UserData::class);
 
         $this->assertSame('foo', $dto->name);
+    }
+
+    /**
+     * @test
+     */
+    public function var_dumper_caster_is_registered()
+    {
+        $varDumperExists = class_exists($cloner = '\Symfony\Component\VarDumper\Cloner\VarCloner');
+        $condition = $varDumperExists ? array_key_exists(Dto::class, $cloner::$defaultCasters) : true;
+
+        $this->assertTrue($condition);
     }
 }
 

@@ -14,7 +14,7 @@ use Cerbero\LaravelDto\Dtos\RequestData;
 use Cerbero\LaravelDto\Dtos\UserData;
 use InvalidArgumentException;
 
-use const Cerbero\Dto\ARRAY_DEFAULT_TO_EMPTY_ARRAY;
+use const Cerbero\Dto\MUTABLE;
 use const Cerbero\Dto\CAST_PRIMITIVES;
 use const Cerbero\Dto\IGNORE_UNKNOWN_PROPERTIES;
 use const Cerbero\Dto\PARTIAL;
@@ -92,10 +92,10 @@ class TurnableIntoDtoTest extends TestCase
         ];
 
         $request = new TestRequest($data);
-        $dto = $request->toDto(ARRAY_DEFAULT_TO_EMPTY_ARRAY);
+        $dto = $request->toDto(MUTABLE);
 
         $this->assertInstanceOf(RequestData::class, $dto);
-        $this->assertSame(ARRAY_DEFAULT_TO_EMPTY_ARRAY, $dto->getFlags());
+        $this->assertSame(MUTABLE, $dto->getFlags());
         $this->assertSame($data, $dto->toArray());
     }
 
