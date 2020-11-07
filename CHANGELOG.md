@@ -4,7 +4,24 @@ All notable changes to `laravel-dto` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## NEXT - 2020-04-20
+
+## 2.0.0 - 2020-11-07
+
+### Added
+- Support for DTO 2
+- Support for Laravel 8
+- Support for PHP 8
+- Improved DTO debugging
+
+### Changed
+- Tag name for publishing the configuration
+
+### Removed
+- Support for DTO 1
+- Support for PHP 7.1 and 7.2
+
+
+## 1.0.0 - 2020-04-20
 
 ### Added
 - Artisan command to generate DTOs for Eloquent models
