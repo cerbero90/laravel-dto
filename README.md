@@ -27,7 +27,7 @@ composer require cerbero/laravel-dto
 To customize some aspects of this package, the `config/dto.php` file can optionally be generated via:
 
 ```bash
-php artisan vendor:publish --tag=cerbero-dto
+php artisan vendor:publish --tag=dto
 ```
 
 
@@ -40,6 +40,7 @@ php artisan vendor:publish --tag=cerbero-dto
 * [Convert into array](#convert-into-array)
 * [Listen to events](#listen-to-events)
 * [Support for macros](#support-for-macros)
+* [DTO debugging](#dto-debugging)
 
 
 ### Generate DTOs
@@ -113,7 +114,7 @@ class PostData extends Dto
 
 By default, DTOs are generated in the `Dtos` directory which is created where models are. For example the DTO for `App\User` is generated as `App\Dtos\UserData` and the DTO for `App\Users\User` is generated as `App\Users\Dtos\UserData`.
 
-To change either the location or the suffix `Data` of generated DTOs, we can create a DTO qualifier by implementing the interface `DtoQualifierContract` and replace the default qualifier in `config/dto.php`:
+To change either the location or the suffix `Data` of generated DTOs, we can create a DTO qualifier by implementing the interface `DtoQualifierContract` and replace the default qualifier in `config/dto.php`. The example below qualifies a DTO in the directory of the model and adds the suffix `Dto`:
 
 ```php
 use Cerbero\LaravelDto\DtoQualifierContract;
@@ -122,11 +123,7 @@ class MyDtoQualifier implements DtoQualifierContract
 {
     public function qualify(string $model): string
     {
-        $segments = explode('\\', $model);
-        $baseName = array_pop($segments);
-        $segments[] = $baseName . 'Dto';
-
-        return implode('\\', $segments);
+        return $model . 'Dto';
     }
 }
 
@@ -139,7 +136,7 @@ return [
 Finally, if a model has already its own DTO generated, we can overwrite it with the option `--force` or `-f`:
 
 ```bash
-php artisan dto:make App/User --force
+php artisan make:dto App/User --force
 ```
 
 
@@ -241,7 +238,7 @@ class Example
 }
 
 $dto = $request->toDto(UserData::class, MUTABLE);
-$dto = $user->toDto(NULLABLE);
+$dto = $user->toDto(CAST_PRIMITIVES);
 $dto = $example->toDto();
 ```
 
@@ -298,6 +295,21 @@ return [
 ### Support for macros
 
 In case we need to add functionalities to all DTOs, an option might be using macros. Please refer to the Laravel documentation to see an [example of how to register a macro][link-macros].
+
+
+### DTO debugging
+
+When using the helpers `dump()` or `dd()`, only DTOs data will be shown instead of all the underlying architecture that makes the package work:
+
+```php
+dd($dto);
+
+// only DTO data is shown:
+
+App\Dtos\UserData {#3224
+  +name: "Phil"
+}
+```
 
 
 ## Change log
