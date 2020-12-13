@@ -4,6 +4,8 @@ use Carbon\Carbon;
 use Cerbero\LaravelDto\Console\DefaultDtoQualifier;
 use Cerbero\LaravelDto\Manipulators\CarbonConverter;
 
+use const Cerbero\Dto\NONE;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -44,4 +46,16 @@ return [
     'listeners' => [
         // UserData::class => UserDataListener::class,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | DTO global flags
+    |--------------------------------------------------------------------------
+    |
+    | The flags to apply to all DTOs by default. Multiple flags might be added
+    | below by joining them with bitwise OR operators "|". These flags will
+    | finally be merged with the default flags specified within each DTO
+    |
+    */
+    'flags' => NONE,
 ];

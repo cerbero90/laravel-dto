@@ -138,6 +138,21 @@ class DtoTest extends TestCase
 
         $this->assertTrue($condition);
     }
+
+    /**
+     * @test
+     */
+    public function default_flags_are_merged_with_flags_in_config()
+    {
+        $dto = UserData::make();
+
+        $this->assertSame(0, $dto->getFlags() & MUTABLE);
+
+        $this->app['config']['dto.flags'] = MUTABLE;
+        $dto = UserData::make();
+
+        $this->assertSame(MUTABLE, $dto->getFlags() & MUTABLE);
+    }
 }
 
 

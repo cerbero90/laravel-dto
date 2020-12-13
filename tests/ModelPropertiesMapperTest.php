@@ -6,7 +6,6 @@ use Cerbero\LaravelDto\Console\DefaultDtoQualifier;
 use Cerbero\LaravelDto\Console\DtoGenerationData;
 use Cerbero\LaravelDto\Console\Manifest;
 use Cerbero\LaravelDto\Console\ModelPropertiesMapper;
-use PHPUnit\Framework\TestCase;
 
 use const Cerbero\Dto\PARTIAL;
 
