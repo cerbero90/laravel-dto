@@ -292,6 +292,17 @@ return [
 ```
 
 
+### Define flags globally
+
+Sometimes we may want all our DTOs to share the same [flags][link-flags], an example might be the need to always work with mutable DTOs. An easy way to accomplish that is defining such flags in the `config/dto.php` file:
+
+```php
+return [
+    'flags' => MUTABLE,
+];
+```
+
+
 ### Support for macros
 
 In case we need to add functionalities to all DTOs, an option might be using macros. Please refer to the Laravel documentation to see an [example of how to register a macro][link-macros].
