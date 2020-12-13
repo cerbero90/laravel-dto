@@ -5,6 +5,7 @@ namespace Cerbero\LaravelDto;
 use Cerbero\Dto\Dto as BaseDto;
 use Cerbero\Dto\Manipulators\Listener as BaseListener;
 use Cerbero\LaravelDto\Manipulators\Listener;
+use Illuminate\Container\Container;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Database\Eloquent\Model;
@@ -75,6 +76,18 @@ abstract class Dto extends BaseDto implements Arrayable, Jsonable
         }
 
         return static::make((array) $source, $flags);
+    }
+
+    /**
+     * Retrieve the default flags
+     *
+     * @return int
+     */
+    public static function getDefaultFlags(): int
+    {
+        $config = Container::getInstance()->make('config');
+
+        return $config['dto.flags'] | static::$defaultFlags;
     }
 
     /**
