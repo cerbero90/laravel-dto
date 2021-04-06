@@ -5,6 +5,12 @@ All notable changes to `laravel-dto` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
 
+## 2.1.1 - 2020-04-06
+
+### Changed
+- Dependencies were updated
+
+
 ## 2.1.0 - 2020-12-13
 
 ### Added
