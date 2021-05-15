@@ -50,7 +50,7 @@ trait TurnsIntoDto
         $dto = is_string($dto) ? $dto : $this->getDtoClass();
 
         if (!$dto) {
-            throw new InvalidArgumentException('DTO to turn [' . static::class . '] into not specified');
+            throw new InvalidArgumentException('Unable to turn [' . static::class . '] into DTO, no class specified');
         } elseif (!is_subclass_of($dto, Dto::class)) {
             throw new DtoNotFoundException($dto);
         }
