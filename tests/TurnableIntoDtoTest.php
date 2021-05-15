@@ -117,7 +117,8 @@ class TurnableIntoDtoTest extends TestCase
      */
     public function fails_if_no_dto_is_provided()
     {
-        $exception = new InvalidArgumentException('DTO to turn [' . Comment::class . '] into not specified');
+        $message = 'Unable to turn [Cerbero\LaravelDto\Database\Models\Tests\Comment] into DTO, no class specified';
+        $exception = new InvalidArgumentException($message);
         $this->expectExceptionObject($exception);
 
         factory(Comment::class)->create()->toDto();

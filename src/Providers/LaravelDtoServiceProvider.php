@@ -8,7 +8,9 @@ use Cerbero\LaravelDto\Manipulators\Listener;
 use Cerbero\LaravelDto\Console\Commands\MakeDtoCommand;
 use Cerbero\LaravelDto\Console\Manifest;
 use Cerbero\LaravelDto\Console\DtoQualifierContract;
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Container\Container;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
 
 use const Cerbero\Dto\IGNORE_UNKNOWN_PROPERTIES;
@@ -58,7 +60,7 @@ class LaravelDtoServiceProvider extends ServiceProvider
      */
     protected function config(string $key)
     {
-        return $this->app['config']["dto.{$key}"];
+        return Config::get("dto.{$key}");
     }
 
     /**
@@ -72,13 +74,14 @@ class LaravelDtoServiceProvider extends ServiceProvider
 
         $this->app->bind(DtoQualifierContract::class, $this->config('qualifier'));
 
-        $this->app->singleton(Manifest::class, function (Application $app) {
-            return new Manifest($app->storagePath() . '/cerbero_laravel_dto.php');
+        $this->app->singleton(Manifest::class, function () {
+            $storagePath = Container::getInstance()->make('path.storage');
+            return new Manifest($storagePath . '/cerbero_laravel_dto.php');
         });
 
-        $this->app->resolving(Dto::class, function (Dto $dto, Application $app) {
-            return $dto->mutate(function (Dto $dto) use ($app) {
-                $dto->merge($app->make('request')->all(), IGNORE_UNKNOWN_PROPERTIES);
+        $this->app->resolving(Dto::class, function (Dto $dto) {
+            return $dto->mutate(function (Dto $dto) {
+                $dto->merge(Request::all(), IGNORE_UNKNOWN_PROPERTIES);
             });
         });
     }
