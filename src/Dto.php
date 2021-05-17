@@ -5,12 +5,13 @@ namespace Cerbero\LaravelDto;
 use Cerbero\Dto\Dto as BaseDto;
 use Cerbero\Dto\Manipulators\Listener as BaseListener;
 use Cerbero\LaravelDto\Manipulators\Listener;
-use Illuminate\Container\Container;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Enumerable;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Request as RequestFacade;
 use Illuminate\Support\Traits\Macroable;
 use JsonSerializable;
 use Traversable;
@@ -37,9 +38,9 @@ abstract class Dto extends BaseDto implements Arrayable, Jsonable
      */
     public static function fromRequest(Request $request = null, int $flags = NONE): self
     {
-        $request = $request ?: Request::capture();
+        $data = $request ? $request->all() : RequestFacade::all();
 
-        return static::make($request->all(), $flags | PARTIAL | IGNORE_UNKNOWN_PROPERTIES);
+        return static::make($data, $flags | PARTIAL | IGNORE_UNKNOWN_PROPERTIES);
     }
 
     /**
@@ -85,9 +86,7 @@ abstract class Dto extends BaseDto implements Arrayable, Jsonable
      */
     public static function getDefaultFlags(): int
     {
-        $config = Container::getInstance()->make('config');
-
-        return $config['dto.flags'] | static::$defaultFlags;
+        return Config::get('dto.flags') | static::$defaultFlags;
     }
 
     /**
