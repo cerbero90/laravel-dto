@@ -1,12 +1,15 @@
 # Laravel DTO
 
-[![Required Laravel Version][ico-laravel]][link-packagist]
-[![Required PHP Version][ico-php]][link-packagist]
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
+[![Author][ico-author]][link-author]
+[![PHP Version][ico-php]][link-php]
+[![Laravel Version][ico-laravel]][link-laravel]
+[![Octane Compatibility][ico-octane]][link-octane]
+[![Build Status][ico-actions]][link-actions]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
+[![Latest Version][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![PSR-12][ico-psr12]][link-psr12]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 Laravel DTO integrates [DTO][link-dto], a package inspired by [Lachlan Krautz][link-lachlan]' excellent [data-transfer-object][link-data-transfer-object], with the functionalities of Laravel.
@@ -355,17 +358,25 @@ If you discover any security related issues, please email andrea.marco.sartori@g
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-laravel]: https://img.shields.io/badge/Laravel-%E2%89%A5%205.6-ff2d20?style=flat-square&logo=laravel
-[ico-php]: https://img.shields.io/packagist/php-v/cerbero/laravel-dto?color=%238892BF&style=flat-square&logo=php
-[ico-version]: https://img.shields.io/packagist/v/cerbero/laravel-dto.svg?style=flat-square
+[ico-author]: https://img.shields.io/static/v1?label=author&message=cerbero90&color=50ABF1&logo=twitter&style=flat-square
+[ico-php]: https://img.shields.io/packagist/php-v/cerbero/laravel-dto?color=%234F5B93&logo=php&style=flat-square
+[ico-laravel]: https://img.shields.io/static/v1?label=laravel&message=%E2%89%A55.6&color=ff2d20&logo=laravel&style=flat-square
+[ico-octane]: https://img.shields.io/static/v1?label=octane&message=compatible&color=ff2d20&logo=laravel&style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/cerbero/laravel-dto.svg?label=version&style=flat-square
+[ico-actions]: https://img.shields.io/github/workflow/status/cerbero90/laravel-dto/build?style=flat-square&logo=github
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/cerbero90/laravel-dto/master.svg?style=flat-square&logo=travis
+[ico-psr12]: https://img.shields.io/static/v1?label=compliance&message=PSR-12&color=blue&style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/cerbero90/laravel-dto.svg?style=flat-square&logo=scrutinizer
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/cerbero90/laravel-dto.svg?style=flat-square&logo=scrutinizer
 [ico-downloads]: https://img.shields.io/packagist/dt/cerbero/laravel-dto.svg?style=flat-square
 
+[link-author]: https://twitter.com/cerbero90
+[link-php]: https://www.php.net
+[link-laravel]: https://laravel.com
+[link-octane]: https://github.com/laravel/octane
 [link-packagist]: https://packagist.org/packages/cerbero/laravel-dto
-[link-travis]: https://travis-ci.org/cerbero90/laravel-dto
+[link-actions]: https://github.com/cerbero90/laravel-dto/actions?query=workflow%3Abuild
+[link-psr12]: https://www.php-fig.org/psr/psr-12/
 [link-scrutinizer]: https://scrutinizer-ci.com/g/cerbero90/laravel-dto/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/cerbero90/laravel-dto
 [link-downloads]: https://packagist.org/packages/cerbero/laravel-dto
@@ -381,5 +392,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-macros]: https://laravel.com/docs/collections#extending-collections
 [link-author]: https://github.com/cerbero90
 [link-lachlan]: https://github.com/lachlankrautz
-[link-repo]: https://github.com/rexlabsio/data-transfer-object
 [link-contributors]: ../../contributors
