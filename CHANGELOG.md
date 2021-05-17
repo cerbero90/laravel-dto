@@ -5,6 +5,18 @@ All notable changes to `laravel-dto` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
 
+## 2.2.1 - 2021-05-17
+
+### Fixed
+- GitHub action build
+
+
+## 2.2.0 - 2021-05-17
+
+### Changed
+- Update package to support Laravel Octane
+
+
 ## 2.1.1 - 2020-04-06
 
 ### Changed
